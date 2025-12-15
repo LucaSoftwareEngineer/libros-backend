@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @Table(name = "libri")
 public class Libro {
 
@@ -46,19 +48,5 @@ public class Libro {
 	@ManyToOne
 	@JoinColumn(name = "lib_stu_id", nullable = true)
 	private Studente studente;
-
-	@Override
-	public boolean equals(Object obj) {
-		Libro libro = (Libro) obj;
-		if (
-			this.getId().equals(libro.getId()) 
-			&& this.getAutore().equals(libro.getAutore()) 
-			&& this.getDataPubblicazione().equals(libro.getDataPubblicazione())
-			&& this.getDataRegistrazioneInBiblioteca().equals(libro.getDataRegistrazioneInBiblioteca())
-		) {
-			return true;
-		}
-		return false;
-	}
 	
 }
