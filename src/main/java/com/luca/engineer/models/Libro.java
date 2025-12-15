@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -40,6 +42,10 @@ public class Libro {
 	
 	@Column(name = "lib_data_registrazione_in_biblioteca", nullable = false)
 	private LocalDate dataRegistrazioneInBiblioteca;
+	
+	@ManyToOne
+	@JoinColumn(name = "lib_stu_id", nullable = true)
+	private Studente studente;
 
 	@Override
 	public boolean equals(Object obj) {

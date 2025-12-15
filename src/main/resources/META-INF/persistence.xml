@@ -4,6 +4,7 @@
     <jta-data-source>java:/MSSQLDS_LIBROS</jta-data-source>
 
 	<class>com.luca.engineer.models.Libro</class>
+	<class>com.luca.engineer.models.Studente</class>
 
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
