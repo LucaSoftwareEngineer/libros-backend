@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 public class AggiungiLibroRequest {
 
-private Long id;
-	
 	private String titolo;
 	private String autore;
 	private LocalDate dataPubblicazione;
