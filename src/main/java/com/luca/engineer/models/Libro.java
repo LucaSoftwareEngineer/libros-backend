@@ -40,5 +40,19 @@ public class Libro {
 	
 	@Column(name = "lib_data_registrazione_in_biblioteca", nullable = false)
 	private LocalDate dataRegistrazioneInBiblioteca;
+
+	@Override
+	public boolean equals(Object obj) {
+		Libro libro = (Libro) obj;
+		if (
+			this.getId().equals(libro.getId()) 
+			&& this.getAutore().equals(libro.getAutore()) 
+			&& this.getDataPubblicazione().equals(libro.getDataPubblicazione())
+			&& this.getDataRegistrazioneInBiblioteca().equals(libro.getDataRegistrazioneInBiblioteca())
+		) {
+			return true;
+		}
+		return false;
+	}
 	
 }
