@@ -10,6 +10,8 @@ import javax.ws.rs.core.Response;
 
 import com.luca.engineer.dto.ModificaStudenteRequest;
 import com.luca.engineer.dto.ModificaStudenteResponse;
+import com.luca.engineer.dto.NoleggiaLibroRequest;
+import com.luca.engineer.dto.NoleggiaLibroResponse;
 import com.luca.engineer.dto.RegistraStudenteRequest;
 import com.luca.engineer.models.Studente;
 import com.luca.engineer.services.StudenteService;
@@ -55,6 +57,22 @@ public class StudenteResource {
 			res.setTelefono(studente.getTelefono());
 			return Response.ok(res).build();
 		}
+	}
+	
+	@PUT
+	@Path("/noleggia/libro")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response noleggiaLibro(NoleggiaLibroRequest json) {
+		
+		Boolean esito = studenteService.noleggiaLibro(json);
+		
+		if (esito) {
+			NoleggiaLibroResponse res = new NoleggiaLibroResponse();
+			res.setEsito(esito);
+			return Response.ok(res).build();
+		}
+		return Response.notModified().build();		
 	}
 	
 }

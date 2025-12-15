@@ -3,9 +3,12 @@ package com.luca.engineer.services;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import com.luca.engineer.dto.ModificaStudenteRequest;
+import com.luca.engineer.dto.NoleggiaLibroRequest;
 import com.luca.engineer.dto.RegistraStudenteRequest;
+import com.luca.engineer.models.Libro;
 import com.luca.engineer.models.Studente;
 
 @Stateless
@@ -53,6 +56,23 @@ public class StudenteService {
 		}
 		
 		return studente;
+		
+	}
+	
+	@Transactional
+	public Boolean noleggiaLibro(NoleggiaLibroRequest json) {
+		
+		Studente studente = entityManager.find(Studente.class, json.getIdStudente());
+		Libro libro = entityManager.find(Libro.class, json.getIdLibro());
+		
+		if (studente == null || libro == null) {
+			return false;
+		}
+		
+		studente.noleggiaLibro(libro);
+		libro.setStudente(studente);
+		
+		return true;
 		
 	}
 
