@@ -24,7 +24,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "studenti")
-@EqualsAndHashCode
 public class Studente {
 
 	@Id
@@ -49,5 +48,9 @@ public class Studente {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studente")
 	private Set<Libro> libriNoleggiati;
+
+	public void noleggiaLibro(Libro libro) {
+		this.libriNoleggiati.add(libro);
+	}
 	
 }

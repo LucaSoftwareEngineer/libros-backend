@@ -24,7 +24,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @Table(name = "libri")
 public class Libro {
 
