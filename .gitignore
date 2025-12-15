@@ -1,0 +1,51 @@
+# Maven build output
+/target/
+/*/target/
+/**/target/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+.apt_generated/
+.factorypath
+
+# IntelliJ IDEA files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# NetBeans files
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code files
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# WildFly / server deployment artifacts
+standalone/tmp/
+standalone/data/
+standalone/log/
+standalone/deployments/*.failed
+standalone/deployments/*.undeployed
+standalone/deployments/*.deployed
+
+# Lombok generated files (handled at compile time, no need in repo)
+lombok.config
+
+# EAR/WAR archives
+*.ear
+*.war
+*.jar
