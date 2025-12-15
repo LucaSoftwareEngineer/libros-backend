@@ -56,4 +56,19 @@ public class LibroService {
 		return libro;
 		
 	}
+	
+	public Boolean elimina(Long id) {
+		try {
+			Libro libro = entityManager.find(Libro.class, id);
+			
+			if (libro.getTitolo() == null) { 
+				return false;
+			} else {
+				entityManager.remove(libro);
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }
