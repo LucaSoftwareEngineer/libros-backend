@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.luca.engineer.dto.ModificaStudenteRequest;
 import com.luca.engineer.dto.RegistraStudenteRequest;
 import com.luca.engineer.models.Studente;
 
@@ -30,6 +31,25 @@ public class StudenteService {
 			
 			System.out.println("registrazione non effettuata");
 		
+		}
+		
+		return studente;
+		
+	}
+	
+	public Studente modifica(ModificaStudenteRequest json) {
+		
+		Studente studente = new Studente();
+		
+		try {
+			studente = entityManager.find(Studente.class, json.getId());
+			studente.setNome(json.getNome());
+			studente.setCognome(json.getCognome());
+			studente.setDataNascita(json.getDataNascita());
+			studente.setLuogoNascita(json.getLuogoNascita());
+			studente.setTelefono(json.getTelefono());
+		} catch (Exception e) {
+			System.out.println("modifica non effettuata");
 		}
 		
 		return studente;

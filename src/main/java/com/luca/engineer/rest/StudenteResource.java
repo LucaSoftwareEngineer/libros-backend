@@ -3,10 +3,13 @@ package com.luca.engineer.rest;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import com.luca.engineer.dto.ModificaStudenteRequest;
+import com.luca.engineer.dto.ModificaStudenteResponse;
 import com.luca.engineer.dto.RegistraStudenteRequest;
 import com.luca.engineer.models.Studente;
 import com.luca.engineer.services.StudenteService;
@@ -29,6 +32,28 @@ public class StudenteResource {
 			return Response.notModified().build();
 		} else {
 			return Response.ok(studente).build();
+		}
+	}
+	
+	@PUT
+	@Path("/modifica")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response modifica(ModificaStudenteRequest json) {
+		
+		Studente studente = studenteService.modifica(json);
+		
+		if (studente.getId() == null) {
+			return Response.notModified().build();
+		} else {
+			ModificaStudenteResponse res = new ModificaStudenteResponse();
+			res.setId(studente.getId());
+			res.setNome(studente.getNome());
+			res.setCognome(studente.getCognome());
+			res.setDataNascita(studente.getDataNascita());
+			res.setLuogoNascita(studente.getLuogoNascita());
+			res.setTelefono(studente.getTelefono());
+			return Response.ok(res).build();
 		}
 	}
 	
