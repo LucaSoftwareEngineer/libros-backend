@@ -1,7 +1,7 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              version="2.2">
   <persistence-unit name="MyPU" transaction-type="JTA">
-    <jta-data-source>java:/MSSQLDS</jta-data-source>
+    <jta-data-source>java:/MSSQLDS_LIBROS</jta-data-source>
 
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
