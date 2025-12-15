@@ -17,6 +17,7 @@ public class LibroService {
 	public Libro aggiungi(AggiungiLibroRequest json) {
 		
 		Libro libro = new Libro();
+		
 		libro.setTitolo(json.getTitolo());
 		libro.setAutore(json.getAutore());
 		libro.setDataPubblicazione(json.getDataPubblicazione());
@@ -25,7 +26,9 @@ public class LibroService {
 		try {
 			entityManager.persist(libro);
 		} catch (Exception e) {
-			return null;
+			
+			System.out.println("inserimento non effettuato");
+			
 		}
 		
 		return libro;

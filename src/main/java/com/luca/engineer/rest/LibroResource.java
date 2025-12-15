@@ -43,7 +43,7 @@ public class LibroResource {
 		
 		Libro libro = libroService.modifica(json);
 		
-		if (libro.equals(null)) {
+		if (libro.getId().equals(null)) {
 			return Response.notModified().build();
 		} else {
 			return Response.ok(libro).build();
