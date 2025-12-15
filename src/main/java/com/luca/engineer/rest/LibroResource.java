@@ -39,7 +39,7 @@ public class LibroResource {
 	@Path("/modifica")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response aggiungi(ModificaLibroRequest json) {
+	public Response modifica(ModificaLibroRequest json) {
 		
 		Libro libro = libroService.modifica(json);
 		
