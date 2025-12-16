@@ -14,6 +14,7 @@ import com.luca.engineer.config.ModelMapperConfig;
 import com.luca.engineer.dto.AggiungiLibroRequest;
 import com.luca.engineer.dto.AggiungiLibroResponse;
 import com.luca.engineer.dto.ModificaLibroRequest;
+import com.luca.engineer.dto.ModificaLibroResponse;
 import com.luca.engineer.models.Libro;
 import com.luca.engineer.services.LibroService;
 
@@ -54,7 +55,8 @@ public class LibroResource {
 		if (libro.getId() == null) {
 			return Response.notModified().build();
 		} else {
-			return Response.ok(libro).build();
+			ModificaLibroResponse res = modelMapperConfig.convert(libro, ModificaLibroResponse.class);
+			return Response.ok(res).build();
 		}
 		
 	}
