@@ -10,7 +10,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import com.luca.engineer.config.ModelMapperConfig;
 import com.luca.engineer.dto.AggiungiLibroRequest;
+import com.luca.engineer.dto.AggiungiLibroResponse;
 import com.luca.engineer.dto.ModificaLibroRequest;
 import com.luca.engineer.models.Libro;
 import com.luca.engineer.services.LibroService;
@@ -20,6 +22,9 @@ public class LibroResource {
 	
 	@EJB
 	private LibroService libroService;
+	
+	@EJB
+	private ModelMapperConfig modelMapperConfig;
 	
 	@POST
 	@Path("/aggiungi")
@@ -32,7 +37,8 @@ public class LibroResource {
 		if (libro.getId() == null) {
 			return Response.notModified().build();
 		} else {
-			return Response.ok(libro).build();
+			AggiungiLibroResponse res = modelMapperConfig.convert(libro, AggiungiLibroResponse.class);
+			return Response.ok(res).build();
 		}
 		
 	}
