@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import com.luca.engineer.config.ModelMapperConfig;
 import com.luca.engineer.dto.AggiungiLibroRequest;
 import com.luca.engineer.dto.AggiungiLibroResponse;
+import com.luca.engineer.dto.MessaggioGenericoResponse;
 import com.luca.engineer.dto.ModificaLibroRequest;
 import com.luca.engineer.dto.ModificaLibroResponse;
 import com.luca.engineer.models.Libro;
@@ -67,7 +68,8 @@ public class LibroResource {
 	public Response elimina(@PathParam("id") Long id) {
 		Boolean esito = libroService.elimina(id);
 		if (esito) {
-			return Response.ok(esito).build();
+			MessaggioGenericoResponse res = new MessaggioGenericoResponse(esito);
+			return Response.ok(res).build();
 		}
 		return Response.notModified().build();
 	}
