@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import com.luca.engineer.config.ModelMapperConfig;
 import com.luca.engineer.dto.ModificaStudenteRequest;
 import com.luca.engineer.dto.ModificaStudenteResponse;
 import com.luca.engineer.dto.NoleggiaLibroRequest;
@@ -21,6 +22,9 @@ public class StudenteResource {
 
 	@EJB
 	private StudenteService studenteService;
+	
+	@EJB
+	private ModelMapperConfig modelMapperConfig;
 	
 	@POST
 	@Path("/registra")
@@ -48,13 +52,7 @@ public class StudenteResource {
 		if (studente.getId() == null) {
 			return Response.notModified().build();
 		} else {
-			ModificaStudenteResponse res = new ModificaStudenteResponse();
-			res.setId(studente.getId());
-			res.setNome(studente.getNome());
-			res.setCognome(studente.getCognome());
-			res.setDataNascita(studente.getDataNascita());
-			res.setLuogoNascita(studente.getLuogoNascita());
-			res.setTelefono(studente.getTelefono());
+			ModificaStudenteResponse res = modelMapperConfig.convert(studente, ModificaStudenteResponse.class);
 			return Response.ok(res).build();
 		}
 	}
